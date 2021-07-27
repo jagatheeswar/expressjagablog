@@ -1,0 +1,42 @@
+
+<%- include('header') -%>
+
+<style>
+  body{
+  
+    background-image: url("/3.jpg");
+}
+div{
+  opacity: 0.9;
+}
+</style>
+<div class="bg-danger m-5 pb-3" id="my">
+    <form action="/new" class="m-5" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="Title">Title:</label>
+            <input type="text" class="form-control" name="title" required placeholder="Title" id="Title">
+          </div>
+          
+          <label for="tags">Choose a Tag:</label>
+
+<select class="form-control " name="tags" id="tags">
+  <option value="Entertainment">Entertainment</option>
+  <option value="General">General</option>
+  <option value="News">News</option>
+  <option value="Politics">Politics</option>
+  <option value="Sports">Sports</option>
+</select>
+          <div class= "form-group mt-4" >
+            <label class= "h5">Content</label>
+            <textarea name= 'content' required class= "form-control" rows= "10"> </textarea>
+          </div>
+          <div class="form-group">
+            <label for="Image">Image:</label>
+            <input type="file" class="form-control" required  name="file" id="Image">
+          </div>
+          <div class="form-group">
+        
+            <input type="submit" class="form-control btn btn-warning mt-3" id="sub">
+          </div>
+        </form>
+</div>

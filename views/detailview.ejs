@@ -1,0 +1,67 @@
+<%- include('header') -%>
+
+<style>
+body{
+    background-image: url("/1.jpg");
+}
+
+img
+{
+margin: auto;
+width: 100%;
+height: 35vw;
+border-radius: 10px;
+}
+</style>
+
+        <div class= "m-4 mb-5 p-4 singleBlog">
+            
+			
+                <img src="/uploads/<%= result.author.image%>" class="userimage" alt="user image">  
+            
+                <a href= '/user/<%= result.author._id %>/<%= result.author.username %>' id="username" class="username m-2">@<%= result.author.username %></a>
+                <% if(result.author._id == authorized_userId){ %>
+                    <button style="text-align: end;" class="btn btn-danger m-1" id= "deleteBlog" >DELETE
+                    </button>
+                <% } %>
+            
+                <p class= "text mb-0" id="title" ><%= result.title %></p> 
+                
+                <% if(result.image){ %>
+                    <img src="/uploads/<%= result.image%>" alt="blog image">
+                 <% } %>
+                
+            <br>
+                <div id="content" class= "blogcontent mt-2 ml-4" style="text-align:justify;" ><%= result.content %></div>
+            
+            </div>
+    
+        </div>
+
+    <%- include('footer') -%>
+    <script defer>
+    
+        var deleteIcon= document.querySelector("#deleteBlog");
+        
+        if(deleteIcon !== null){
+            
+            deleteIcon.addEventListener("click", async(event) => {
+                var pathname= document.location.pathname;
+                var blogId= pathname.split("/")[2];
+            
+                var options= {
+                    method: 'DELETE',
+                    headers: {
+                        blogid : blogId
+                    }
+                }
+                var response= await fetch(`/delete`, options);
+        
+                if(response.ok)
+                    document.location.href= "/";
+                else
+                    document.location.reload();   
+            });
+        }    
+    </script>
+    

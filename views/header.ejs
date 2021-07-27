@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Shadows+Into+Light&family=Zen+Tokyo+Zoo&display=swap" rel="stylesheet">
+
+<script src="https://kit.fontawesome.com/3518d06d8d.js" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.0/css/font-awesome.min.css">
+<style>
+  body{
+   
+    background-position:center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.userimage {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+a{
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: black;
+    font-size:x-large;
+  
+  }
+
+a.username{
+    
+    text-transform: uppercase;
+    font-weight: bold;
+    color: black;
+    font-size:large
+}
+.text{
+  color: red;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight:600;
+    font-size: large;
+    color: black;
+    
+    
+}
+.img{
+    text-align: start;
+}
+.blogcontent{
+    color:black;
+    font-size: medium;
+    font-weight: 500;
+}
+
+.singleBlog{
+    opacity: 0.9;
+    background-color: rgb(132, 198, 214);
+  border-radius: 15px;
+  overflow: hidden;
+
+}
+.singleBlog:hover{
+    transform: scale(1.03);
+    overflow: hidden;
+
+}
+a.readmore#readmore{
+
+font-weight: bold;
+font-size: large;
+}
+nav button,nav div ul li a{
+  font-size: larger;
+  font-weight: bolder;
+  color: white;
+}
+#theblog{
+  font-size: 50px;
+  font-weight: bolder;
+  color: white;
+  
+}
+nav div ul li a:hover,#theblog:hover{
+  
+  color: rgb(0, 0, 0);
+}
+.singleBlog{
+    opacity: 0.9;
+    background-color: rgb(255, 183, 183);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.6) 0px 19px 38px, rgba(0, 0, 0, 0.6) 0px 15px 12px;
+}
+.singleBlog:hover{
+    transform: scale(1.02);
+    overflow: hidden;
+
+}
+div.pageinatediv{
+       display: flex;
+       flex-direction: row;
+       justify-content: space-around;
+    }
+#username{
+  font-family: 'Zen Tokyo Zoo', cursive;
+}
+#title{
+  font-family: 'Monoton',cursive;
+}
+</style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-md bg-danger">
+    <a class="navbar-brand" id="theblog" href="\">THE BLOG</a>
+    <button class=" btn btn-primary" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <i class="fas fa-bars fa-2x" aria-hidden="true"></i>
+
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav ml-auto my-3">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home  <i class="fas fa-home" aria-hidden="true"></i></a>
+        </li>
+        
+        <%if (!locals.session.loggedin) { %>
+          <li class="nav-item"><a class="nav-link" href="/auth/register">Register</a></li>
+          <li><a class="nav-link" href="/auth/login">Login  <i class="fas fa-sign-in-alt" aria-hidden="true"></i></a></li>
+          <% }else{ %>
+            <li><a class="nav-link" href="/auth/logout">logout  <i class="fas fa-sign-out-alt"></i></a></li>
+              <%}%>
+      
+      </ul>
+    </div>  
+  </nav>
+ 
+ 
+    

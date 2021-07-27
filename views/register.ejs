@@ -1,0 +1,57 @@
+<%- include('logreg') -%>
+<div class="bg-danger" id="my">
+<form action="/auth/register" method="POST" id="reg" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="usernamea">Username:</label>
+        <input type="text" class="form-control" required placeholder="Username" name="username" id="usernamea">
+      </div>
+
+    <div class="form-group">
+        <label for="pwd">Email:</label>
+        <input type="email" class="form-control" placeholder="email" required name="email" id="email">
+      </div>
+
+      
+    <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" placeholder="password" required name="password" id="pwd">
+      </div>
+      
+      
+    <div class="form-group">
+        <label for="pwd">Confirm Password:</label>
+        <input type="password" class="form-control" name="cpassword" placeholder="confirm password" required id="cpwd">
+      </div>
+      
+
+      <div class="form-group">
+        <label for="pwd">show password <i class="fa fa-eye"></i></label>
+        <input type="checkbox" onclick="show()">
+      </div>
+      
+
+      <div class="form-group">
+        
+        <input type="submit" class="form-control btn btn-warning" id="sub">
+      </div>
+
+      
+</form>
+
+</div>
+
+<script>
+    function show() {
+  var x = document.getElementById("pwd");
+  var y = document.getElementById("cpwd");
+  if (x.type === "password") {
+    x.type = "text";
+    y.type = "text";
+    
+  } else {
+    x.type = "password";
+    y.type = "password";
+}
+}
+</script>
+<%- include('footer') -%>

@@ -1,0 +1,91 @@
+<%- include('header') -%>
+
+<style>
+
+body{
+    background-image: url("15.jpg");
+}
+#my
+    {display: flex;
+        justify-content: center;
+        margin: auto;
+        width: 90%;
+        height: 100%;
+        border-radius: 10px;
+        padding: 10px;
+    }
+    .new:hover{
+        transform: scale(1.1); 
+    }
+</style>
+
+<form action="/filter" method="POST" class="m-1"  style="text-align: end; position: relative;">
+    <label for="tagfilter" class="text-warning">Choose a Tag:</label>
+    <select class="" style="width: 200px;" name="tagfilter" id="tagfilter">
+  <option value="Entertainment">Entertainment</option>
+  <option value="General">General</option>  
+  <option value="News">News</option>
+  <option value="Politics">Politics</option>
+  <option value="Sports">Sports</option>
+</select>
+      <br>
+    <input type="submit" value="filter" style="width: 200px;" class="form-controls btn btn-warning mt-1" id="sub">
+  
+  </form>
+  
+   <a href="/new" style="text-decoration: none;"> <button  id="my" class="btn btn-danger new mt-3" style="font-weight: bold; font-size: large;"><i class="fa fa-plus fa-2x"></i> &nbsp; &nbsp;CREATE NEW POST </button></a>
+    <% results.forEach((blog)=>{ %>
+        
+        <div class= "m-4 mb-5 p-3 singleBlog">
+            <img src="/uploads/<%= blog.author.image%>" class="userimage" alt="user image">  
+            <a href= '/user/<%= blog.author._id %>/<%= blog.author.username %>' id="username" class="username m-2">@<%= blog.author.username %></a>
+            
+            <a href="/read/<%= blog._id%>" id="title" ><p class= "text mb-0" ><%= blog.title %></p></a>
+            
+             
+        <br>
+            <div class= "blogcontent" style="text-align:justify;" id="content" ><%= blog.content %></div>
+            <a class="readmore text-primary" href="/read/<%= blog._id%>" id="readmore">Read more...</a>
+        
+        </div>
+
+    <% }) %>
+     
+    <% if (pagecount > 0) { %>
+        <ul class=" page">
+            <div class="pageinatediv">
+            <% if (current == 1) { %>
+            <li><a><button class="disabled btn btn-warning btn-md">First</button></a></li>
+            <% } else { %>
+                <li><a href="/?page=1"><button class="disabled btn btn-danger btn-md">First</button></a></li>
+            <% } %>
+            
+            <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+            
+            <% if (i !== 1) { %>
+                <li class="disabled"><a>...</a></li>
+            <% } %>
+
+            <% for (; i <= (Number(current) + 4) && i <= pagecount; i++) { %>
+                <% if (i == current) { %>
+                    <li class="active"><a><button class="btn btn-warning btn-md"><%= i %></button></a></li>
+                <% } else { %>
+                    <li><a href="/?page=<%= i %>"><button class="btn btn-danger btn-md"><%= i %></button></a></li>
+                <% } %>
+                <% if (i == Number(current) + 4 && i < pagecount) { %>
+                    <li class="disabled"><a>...</a></li>
+                <% } %>
+            <% } %>
+            <% if (current == pagecount) { %>
+                <li class="disabled"><a><button class="btn btn-danger btn-md">Last</button></a></li>
+            <% } else { %>
+                <li><a href="/?page=<%= pagecount %>"><button class="btn btn-danger btn-md">Last</button></a></li>
+            <% } %>
+        </ul>
+    <% } %>
+
+</div>
+</div>
+
+    <%- include('footer') -%>
+    

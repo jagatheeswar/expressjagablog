@@ -1,0 +1,40 @@
+<%- include('header') -%>
+
+<style>
+
+body{
+    background-image: url("/8.jpg");
+}
+
+
+.userhead{
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    
+    font-size:large
+}
+</style>
+
+    
+<div class="userhead text-warning">Posts filtered by <%= result[0].tag %> Tag</div>
+<% result.forEach((blog)=>{ %>
+        
+    <div class= "m-4 mb-5 p-3 singleBlog">
+        <img src="/uploads/<%= blog.author.image%>" class="userimage" alt="user image">  
+        <a href= '/user/<%= blog.author._id %>/<%= blog.author.username %>' id="username" class="username m-2">@<%= blog.author.username %></a>
+        
+        <a href="/read/<%= blog._id%>" id="title" ><p class= "text mb-0" ><%= blog.title %></p></a>
+        
+         
+    <br>
+        <div class= "blogcontent" id="content" style="text-align:justify;" ><%= blog.content %></div>
+        <a class="readmore text-primary" href="/read/<%= blog._id%>" id="readmore">Read more...</a>
+    
+    </div>
+
+<% }) %>
+
+</div>
+
+    <%- include('footer') -%>

@@ -1,0 +1,71 @@
+<%- include('header') -%>
+
+<style>
+
+body{
+    background-image: url("/13.jpg");
+}
+
+
+.userhead{
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: rgb(0, 255, 128);
+    font-size:large
+}
+</style>
+<div class="userhead">Posts by <%= username %></div>
+    
+    <% result.forEach((blog)=>{ %>
+        
+        <div class= "m-4 mb-5 p-3 singleBlog">
+            <img src="/uploads/<%= blog.author.image%>"  class="userimage" alt="user image">
+            
+            <a href= '/user/<%= blog.author._id %>/<%= blog.author.username %>' id="username" class="username m-2 disabled">@<%= blog.author.username %></a>
+            <a  href="/read/<%= blog._id%>"><p class= "text mb-0" id="title" ><%= blog.title %></p></a>
+            
+        <br>
+            <div class= "blogcontent" id="content" style="text-align:justify;" ><%= blog.content %></div>
+                <a class="readmore text-primary"  href="/read/<%= blog._id%>" id="readmore">Read more...</a>
+        </div>
+        
+    <% }) %>
+    
+    <% if (pagecount > 0) { %>
+        <ul class=" page">
+            <div class="pageinatediv">
+            <% if (current == 1) { %>
+            <li><a><button class="disabled btn btn-warning btn-md">First</button></a></li>
+            <% } else { %>
+                <li><a href="/user/<%= result[0].author._id %>/<%= result[0].author.username%>?page=1"><button class="disabled btn btn-danger btn-md">First</button></a></li>
+            <% } %>
+            
+            <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+            
+            <% if (i !== 1) { %>
+                <li class="disabled"><a>...</a></li>
+            <% } %>
+
+            <% for (; i <= (Number(current) + 4) && i <= pagecount; i++) { %>
+                <% if (i == current) { %>
+                    <li class="active"><a><button class="btn btn-warning btn-md"><%= i %></button></a></li>
+                <% } else { %>
+                    <li><a href="/user/<%= result[0].author._id %>/<%= result[0].author.username%>?page=<%= i %>"><button class="btn btn-danger btn-md"><%= i %></button></a></li>
+                <% } %>
+                <% if (i == Number(current) + 4 && i < pagecount) { %>
+                    <li class="disabled"><a>...</a></li>
+                <% } %>
+            <% } %>
+            <% if (current == pagecount) { %>
+                <li class="disabled"><a><button class="btn btn-danger btn-md">Last</button></a></li>
+            <% } else { %>
+                <li><a href="/user/<%= result[0].author._id %>/<%= result[0].author.username%>?page=<%= pagecount %>"><button class="btn btn-danger btn-md">Last</button></a></li>
+            <% } %>
+        </ul>
+    <% } %>
+    
+</div>
+</div>
+
+    <%- include('footer') -%>
