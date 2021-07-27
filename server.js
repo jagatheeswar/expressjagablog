@@ -2,7 +2,7 @@ const express = require ('express');
 const app = express();
 const authroute = require('./routes.js').authrouter
 const postroute = require('./routes.js').postrouter
-require('dotenv').config()
+
 const cookieparser = require('cookie-parser')
 const bcrypt = require('bcrypt');
 const session = require('express-session')
