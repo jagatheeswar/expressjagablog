@@ -79,7 +79,7 @@ authrouter.post('/login', async(req,res)=>{
         const password = req.body.password
         const userobj = await Register.findOne({email:email})
         const ismatch = await bcrypt.compare(password,userobj.password)
-        const token =  jwt.sign({_id:userobj._id},"kjskhdjkhskhskjsdkhfskdfjkslfjlksfjlksjdlffd")
+        const token =  jwt.sign({_id:userobj._id},process.env.SECRET)
         res.cookie("jwt",token,{
             httpOnly:true,
             sameSite: 'none', 
